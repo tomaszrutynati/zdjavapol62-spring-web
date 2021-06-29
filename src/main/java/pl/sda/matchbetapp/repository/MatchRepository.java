@@ -33,6 +33,8 @@ public class MatchRepository {
         if (match.getId() == null) {
             long currentMaxId = allMatches.stream().mapToLong(mat -> mat.getId()).max().orElse(0L);
             match.setId(++currentMaxId);
+        } else {
+            allMatches.removeIf(ent -> ent.getId().equals(match.getId()));
         }
         allMatches.add(match);
         storeInFile(allMatches);
