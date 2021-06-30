@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.sda.matchbetapp.api.model.Match;
 import pl.sda.matchbetapp.exception.DateInPastException;
+import pl.sda.matchbetapp.exception.MatchNotFoundException;
 import pl.sda.matchbetapp.repository.MatchEntity;
 import pl.sda.matchbetapp.repository.MatchRepository;
 
@@ -16,6 +17,10 @@ import java.util.stream.Collectors;
 public class MatchService {
 
     private final MatchRepository repository;
+
+    public boolean checkIfMatchExists(Long id) {
+        return repository.existsById(id);
+    }
 
     public void create(Match match) {
         if (match.getFirstTeam().isEmpty() || match.getSecondTeam().isEmpty()) {
@@ -38,6 +43,10 @@ public class MatchService {
             throw new DateInPastException("Godzina meczu jest z przeszlosci");
         }
 
+        if (!repository.existsById(match.getId())) {
+            throw new MatchNotFoundException("Mecz nie istnieje");
+        }
+
         repository.save(MatchEntity.builder()
                 .id(match.getId())
                 .firstTeam(match.getFirstTeam())
@@ -47,6 +56,10 @@ public class MatchService {
     }
 
     public void delete(Long id) {
+        if (!repository.existsById(id)) {
+            throw new MatchNotFoundException("Mecz nie istnieje");
+        }
+
         repository.delete(id);
     }
 

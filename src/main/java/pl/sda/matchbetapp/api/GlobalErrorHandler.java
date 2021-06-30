@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import pl.sda.matchbetapp.api.model.Error;
+import pl.sda.matchbetapp.exception.MatchNotFoundException;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -19,9 +20,17 @@ public class GlobalErrorHandler {
     @ExceptionHandler(value = {IllegalArgumentException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Error handleIllegalArgument(IllegalArgumentException ex) {
+        return handleError(ex);
+    }
+    @ExceptionHandler(value = {MatchNotFoundException.class})
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Error handleMatchNotFound(MatchNotFoundException ex) {
+        return handleError(ex);
+    }
+
+    private Error handleError(RuntimeException ex) {
         String code = UUID.randomUUID().toString();
         LOGGER.error("Error occured " + code, ex);
-
         return Error.builder()
                 .code(code)
                 .message(ex.getMessage())

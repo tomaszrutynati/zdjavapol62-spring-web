@@ -50,6 +50,10 @@ public class MatchRepository {
         storeInFile(allMatches);
     }
 
+    public boolean existsById(Long id) {
+        return readFromFile().stream().anyMatch(mat -> mat.getId().equals(id));
+    }
+
     //ZOSTAWIAMY WIELOWĄTKOWOSC - NA TYM ETAPIE ZAKLADAMY ZE BEDZIEMY PRZETWARZAC 1 REQUEST NA RAZ
     private void storeInFile(List<MatchEntity> matchEntities) {
         Path path = Paths.get(matchesFilePath);
