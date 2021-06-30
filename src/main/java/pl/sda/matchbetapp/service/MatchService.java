@@ -16,6 +16,10 @@ public class MatchService {
     private final MatchRepository repository;
 
     public void create(Match match) {
+        if (match.getFirstTeam().isEmpty() || match.getSecondTeam().isEmpty()) {
+            throw new IllegalStateException("Nie podano zespolow bioracyh udzial w meczu");
+        }
+
         repository.save(MatchEntity.builder()
                 .firstTeam(match.getFirstTeam())
                 .secondTeam(match.getSecondTeam())
