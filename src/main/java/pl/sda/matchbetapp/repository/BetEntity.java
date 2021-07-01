@@ -6,22 +6,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @Builder
+@Getter
 @Entity
-@Table(name = "users")
-public class UserEntity {
+@Table(name = "bets")
+public class BetEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String login;
-    private String firstName;
-    private String lastName;
 
-    @OneToMany(mappedBy = "user")
-    private Set<BetEntity> bets;
+    private Integer firstTeamResult;
+    private Integer secondTeamResult;
+
+    @ManyToOne
+    private MatchEntity match;
+    @ManyToOne
+    private UserEntity user;
 }
