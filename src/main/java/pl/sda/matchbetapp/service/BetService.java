@@ -25,6 +25,8 @@ public class BetService {
         BetEntity entity = BetEntity.builder()
                 .firstTeamResult(bet.getFirstTeamResult())
                 .secondTeamResult(bet.getSecondTeamResult())
+                //Jeden z sposobów budowania relacji między encjami - inny to wyciągnięcie encji
+                //za pomocą repository, czyli matchRepository.findById(bet.getMatchId())
                 .match(MatchEntity.builder().id(bet.getMatchId()).build())
                 .user(UserEntity.builder().id(bet.getUserId()).build())
                 .build();
