@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.pl.PESEL;
 import pl.sda.matchbetapp.api.validator.DifferentTeams;
 import pl.sda.matchbetapp.api.validator.TeamName;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
@@ -26,4 +27,8 @@ public class Match {
     @Future(message = "Data rozegrania meczu nie moze byc z przeszloscia")
     private LocalDateTime startTime;
 
+    @AssertTrue(message = "Mecze mogą się odbywać tylko popoludniu")
+    public boolean isStartTimeAfternoon() {
+        return startTime.getHour() >= 12;
+    }
 }
