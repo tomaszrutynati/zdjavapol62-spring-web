@@ -60,11 +60,11 @@ public class MatchService {
             throw new MatchNotFoundException("Mecz nie istnieje");
         }
 
-        repository.delete(id);
+        repository.deleteById(id);
     }
 
     public List<Match> getAll() {
-        return repository.getAll().stream()
+        return repository.findAll().stream()
                 .map(ent -> Match.builder()
                         .id(ent.getId())
                         .firstTeam(ent.getFirstTeam())
