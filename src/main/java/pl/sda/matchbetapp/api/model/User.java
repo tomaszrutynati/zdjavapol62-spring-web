@@ -1,9 +1,6 @@
 package pl.sda.matchbetapp.api.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import pl.sda.matchbetapp.api.validator.UserNameLength;
 
 import javax.validation.constraints.Email;
@@ -12,6 +9,7 @@ import javax.validation.constraints.Email;
 @AllArgsConstructor
 @Setter
 @Getter
+@Builder
 @UserNameLength(minLength = 10, maxLength = 20)
 public class User {
     private Long id;
