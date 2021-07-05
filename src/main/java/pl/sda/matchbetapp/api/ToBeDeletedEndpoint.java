@@ -51,6 +51,9 @@ public class ToBeDeletedEndpoint {
                 .findAllByFirstTeamIn(Arrays.asList("Niemcy", "Polska"));
         LOGGER.info("Liczba meczów Niemców i Polaków w domu" + homeMatchesWithGermansAndPoles.size());
 
+        Long betCount = betRepository.countByUser_login("lewy@wp.pl");
+        LOGGER.info("Liczba zakładów po loginie " + betCount);
+
         return "ok";
     }
 
