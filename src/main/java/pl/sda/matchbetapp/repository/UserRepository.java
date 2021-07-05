@@ -28,4 +28,12 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
             " (bt.firstTeamResult + bt.secondTeamResult) = " +
             " (select max(bet.firstTeamResult + bet.secondTeamResult) from BetEntity bet)")
     List<UserEntity> findAllUsersWithBetsWithHighestNumberOfGoals();
+
+
+    //1. Napisz zapytanie, które wyciągnie tylko loginy
+    //użytkowników, którzy postawili chociaż jeden zakład.
+    @Query("select distinct us.login from UserEntity us inner join us.bets ")
+    List<String> findLoginsOfUsersWithBets();
+
+
 }
