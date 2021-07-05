@@ -25,7 +25,18 @@ public class ToBeDeletedEndpoint {
 
     @GetMapping
     public String test() {
-        List<UserEntity> allByLoginEndsWith = userRepository.findAllByLoginEndsWith("gmail.com");
+        List<UserEntity> allUsersWithDrawBet = userRepository.findAllUsersWithDrawBet();
+        LOGGER.info("Uzytkownicy z remisem :" + allUsersWithDrawBet.size());
+
+        List<UserEntity> usersWithHighestNumberOfGoals = userRepository.findAllUsersWithBetsWithHighestNumberOfGoals();
+        LOGGER.info("Uzytkownicy z największą liczba bramek :");
+        usersWithHighestNumberOfGoals.forEach(us -> LOGGER.info(us.getFirstName() + us.getLastName()));
+
+
+
+
+
+        /* List<UserEntity> allByLoginEndsWith = userRepository.findAllByLoginEndsWith("gmail.com");
         LOGGER.info("Liczba uzytkownikow z pasujacym suffixem " + allByLoginEndsWith.size());
 
         List<BetEntity> betsWithResult = betRepository.findAllByMatch_idAndFirstTeamResultAndSecondTeamResult(
@@ -52,7 +63,7 @@ public class ToBeDeletedEndpoint {
         LOGGER.info("Liczba meczów Niemców i Polaków w domu" + homeMatchesWithGermansAndPoles.size());
 
         Long betCount = betRepository.countByUser_login("lewy@wp.pl");
-        LOGGER.info("Liczba zakładów po loginie " + betCount);
+        LOGGER.info("Liczba zakładów po loginie " + betCount);*/
 
         return "ok";
     }
