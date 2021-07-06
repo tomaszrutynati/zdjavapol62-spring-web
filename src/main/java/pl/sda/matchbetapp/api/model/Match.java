@@ -2,6 +2,7 @@ package pl.sda.matchbetapp.api.model;
 
 import lombok.*;
 import org.hibernate.validator.constraints.pl.PESEL;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.sda.matchbetapp.api.validator.DifferentTeams;
 import pl.sda.matchbetapp.api.validator.TeamName;
 
@@ -25,6 +26,7 @@ public class Match {
     @NotBlank(message = "Nazwa zespolu goscia nie moze byc pusta")
     private String secondTeam;
     @Future(message = "Data rozegrania meczu nie moze byc z przeszloscia")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime startTime;
 
     @AssertTrue(message = "Mecze mogą się odbywać tylko popoludniu")

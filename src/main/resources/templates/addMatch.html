@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Bet app</title>
+</head>
+<body>
+    <h3>Dodaj mecz:</h3>
+
+    <form method="post" th:object="${match}" th:action="@{/match}">
+        Pierwszy zespół: <input type="text" th:field="*{firstTeam}"/><br>
+        Drugi zespół: <input type="text" th:field="*{secondTeam}"/><br>
+        Rozpoczęcie: <input type="datetime-local" th:field="*{startTime}"/><br>
+        <input type="submit" value="Zapisz"/>
+    </form>
+</body>
+</html>
