@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.matchbetapp.api.model.Match;
+import pl.sda.matchbetapp.api.model.MatchSearchParams;
 import pl.sda.matchbetapp.exception.DateInPastException;
 import pl.sda.matchbetapp.service.MatchService;
 import pl.sda.matchbetapp.api.model.Error;
@@ -27,6 +28,11 @@ public class MatchEndpoint {
     private static final Logger LOGGER = LoggerFactory.getLogger(MatchEndpoint.class);
 
     private final MatchService matchService;
+
+    @PostMapping("/search")
+    public List<Match> getBySearchParams(@RequestBody MatchSearchParams searchParams) {
+        return matchService.getBySearchParams(searchParams);
+    }
 
     @GetMapping
     public List<Match> getAll() {

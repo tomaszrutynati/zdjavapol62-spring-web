@@ -29,7 +29,7 @@ public interface BetRepository extends JpaRepository<BetEntity, Long> {
 
     //Napisz zapytanie, które wyciągnie zakłady dotyczące
     //nie remisów
-    @Query("select bt from BetEntity where bt.firstTeamResult <> bt.secondTeamResult")
+    @Query("select bt from BetEntity bt where bt.firstTeamResult <> bt.secondTeamResult")
     List<BetEntity> findAllBetsWithoutDraws();
 
     //Napisz zapytanie, które wyciągnie zakłady dotyczące podanego
