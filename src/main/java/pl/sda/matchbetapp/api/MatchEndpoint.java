@@ -21,7 +21,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/match")
+@RequestMapping("/api/match")
 @RequiredArgsConstructor
 public class MatchEndpoint {
 

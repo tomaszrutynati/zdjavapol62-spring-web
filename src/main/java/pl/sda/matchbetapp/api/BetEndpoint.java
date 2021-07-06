@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/bet")
+@RequestMapping("/api/bet")
 @RequiredArgsConstructor
 public class BetEndpoint {
 
