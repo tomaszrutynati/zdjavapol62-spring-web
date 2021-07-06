@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.matchbetapp.api.model.User;
+import pl.sda.matchbetapp.api.model.UserSearchParams;
 import pl.sda.matchbetapp.service.UserService;
 
 import javax.validation.Valid;
@@ -15,6 +16,11 @@ import java.util.List;
 public class UserEndpoint {
 
     private final UserService userService;
+
+    @PostMapping("/search")
+    public List<User> getBySearchParams(@RequestBody UserSearchParams searchParams) {
+        return userService.searchByParams(searchParams);
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

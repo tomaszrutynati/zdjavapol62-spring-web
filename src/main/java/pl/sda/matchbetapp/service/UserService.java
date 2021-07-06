@@ -3,6 +3,7 @@ package pl.sda.matchbetapp.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.sda.matchbetapp.api.model.User;
+import pl.sda.matchbetapp.api.model.UserSearchParams;
 import pl.sda.matchbetapp.repository.UserEntity;
 import pl.sda.matchbetapp.repository.UserRepository;
 
@@ -14,6 +15,13 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
+
+    public List<User> searchByParams(UserSearchParams userSearchParams) {
+        return userRepository.searchByParams(userSearchParams)
+                .stream()
+                .map(this::toUser)
+                .collect(Collectors.toList());
+    }
 
     public void create(User user) {
         userRepository.save(UserEntity.builder()
@@ -38,12 +46,16 @@ public class UserService {
 
     public List<User> getAll() {
         return userRepository.findAll().stream()
-                .map(ent -> User.builder()
-                        .id(ent.getId())
-                        .firstName(ent.getFirstName())
-                        .lastName(ent.getLastName())
-                        .login(ent.getLogin())
-                        .build())
+                .map(this::toUser)
                 .collect(Collectors.toList());
+    }
+
+    private User toUser(UserEntity ent) {
+        return User.builder()
+                .id(ent.getId())
+                .firstName(ent.getFirstName())
+                .lastName(ent.getLastName())
+                .login(ent.getLogin())
+                .build();
     }
 }
