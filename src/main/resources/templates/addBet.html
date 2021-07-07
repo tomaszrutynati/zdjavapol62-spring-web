@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Bet app</title>
+</head>
+<body>
+    <h3>Dodaj zakład:</h3>
+
+    <form method="post" th:object="${bet}" th:action="@{/bet}">
+        Mecz: <select type="text" th:field="*{matchId}">
+                <option th:each="option : ${matches}" th:value="${option.id}"><span th:text="${option.label}"></span></option>
+              </select>
+        <br>
+        Użytkownik: <select type="text" th:field="*{userId}">
+                <option th:each="option : ${users}" th:value="${option.id}"><span th:text="${option.label}"></span></option>
+                </select>
+        <br>
+        Wynik pierwszego zespołu: <input type="number" th:field="*{firstTeamResult}"/><br>
+        Wynik drugiego zespołu: <input type="number" th:field="*{secondTeamResult}"/><br>
+        <input type="submit" value="Zapisz"/>
+    </form>
+</body>
+</html>
