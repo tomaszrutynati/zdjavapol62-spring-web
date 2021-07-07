@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bet app</title>
+</head>
+<body>
+
+<table>
+    <thead>
+        <tr>
+            <td>Mecz</td>
+            <td>Czas rozpoczęcia</td>
+            <td>Użytkownik</td>
+            <td>Wynik</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="bet: ${bets}">
+            <td><span th:text="${bet.firstTeam + '-' + bet.secondTeam}"></span></td>
+            <td><span th:text="${bet.startTime}"></span></td>
+            <td><span th:text="${bet.userLogin}"></span></td>
+            <td><span th:text="${bet.firstTeamResult + ':' + bet.secondTeamResult}"></span></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

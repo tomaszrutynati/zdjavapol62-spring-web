@@ -53,6 +53,13 @@ public class BetService {
                 .collect(Collectors.toList());
     }
 
+    public List<BetDetails> getAll() {
+        return betRepository.findAll()
+                .stream()
+                .map(this::toDetails)
+                .collect(Collectors.toList());
+    }
+
     private void validateBet(NewBet bet) {
         if (!matchService.checkIfMatchExists(bet.getMatchId())) {
             throw new MatchNotFoundException("Mecz nie istnieje");

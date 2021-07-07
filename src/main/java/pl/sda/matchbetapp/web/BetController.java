@@ -25,6 +25,13 @@ public class BetController {
     private final UserService userService;
     private final BetService betService;
 
+    @GetMapping("/all")
+    public ModelAndView displayAllBets() {
+        ModelAndView mav = new ModelAndView("bets");
+        mav.addObject("bets", betService.getAll());
+        return mav;
+    }
+
     @GetMapping
     public ModelAndView displayBetPage() {
         ModelAndView mav = new ModelAndView("addBet");
