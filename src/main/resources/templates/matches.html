@@ -27,7 +27,7 @@
     </style>
 </head>
 <body>
-
+<div th:replace="fragments/utils.html :: navigation"/>
 <h3 th:if="${matches.isEmpty()}">Brak dodanych meczy. <a th:href="@{match}">Dodaj</a></h3>
 
 <table th:unless="${matches.isEmpty()}">

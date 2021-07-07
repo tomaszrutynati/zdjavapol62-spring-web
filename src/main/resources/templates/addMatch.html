@@ -5,6 +5,7 @@
     <title>Bet app</title>
 </head>
 <body>
+    <div th:replace="fragments/utils.html :: navigation"/>
     <h3>Dodaj mecz:</h3>
 
     <form method="post" th:object="${match}" th:action="@{/match}">

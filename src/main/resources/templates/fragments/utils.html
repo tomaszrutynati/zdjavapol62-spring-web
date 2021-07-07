@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bet app</title>
+</head>
+<body>
+
+    <div th:fragment="navigation">
+        <ul>
+            <li><a th:href="@{/}">Strona główna</a></li>
+            <li><a th:href="@{/match/all}">Mecze</a></li>
+            <li><a th:href="@{/match}">Dodaj mecz</a></li>
+            <li><a th:href="@{/user}">Dodaj użytkownika</a></li>
+            <li><a th:href="@{/bet}">Dodaj zakład</a></li>
+            <li><a th:href="@{/bet/all}">Wszystkie zakłady</a></li>
+            <li><a th:href="@{/contact}">Kontakt</a></li>
+        </ul>
+    </div>
+
+</body>
+</html>
