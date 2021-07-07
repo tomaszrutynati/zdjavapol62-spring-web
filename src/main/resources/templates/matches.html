@@ -37,6 +37,7 @@
         <td>Gospodarz</td>
         <td>Gość</td>
         <td>Data rozpoczęcia</td>
+        <td>Akcje</td>
     </tr>
     </thead>
     <tbody>
@@ -45,6 +46,7 @@
         <td><span th:class="${match.isFromPast()? 'red' : 'black'}" th:text="${match.firstTeam}"></span></td>
         <td><span th:class="${match.isFromPast()? 'red' : 'black'}" th:text="${match.secondTeam}"></span></td>
         <td><span th:class="${match.isFromPast()? 'red' : 'black'}" th:text="${match.startTime}"></span></td>
+        <td><a th:class="${match.isFromPast()? 'red' : 'black'}" th:href="@{'edit?id=' + ${match.id}}">Edytuj</a></td>
     </tr>
     </tbody>
 </table>

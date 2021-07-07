@@ -2,10 +2,7 @@ package pl.sda.matchbetapp.web;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import pl.sda.matchbetapp.api.model.Match;
@@ -25,6 +22,13 @@ public class MatchController {
         return modelAndView;
     }
 
+    @GetMapping("/edit")
+    public ModelAndView displayEditMatchPage(@RequestParam Long id) {
+        ModelAndView modelAndView = new ModelAndView("addMatch");
+        modelAndView.addObject("match", matchService.getById(id));
+        return modelAndView;
+    }
+
     @GetMapping
     public ModelAndView displayAddMatchPage() {
         ModelAndView modelAndView = new ModelAndView("addMatch");
@@ -34,8 +38,12 @@ public class MatchController {
 
     @PostMapping
     public RedirectView handleAddMatch(@ModelAttribute("match") Match match) {
-        matchService.create(match);
+        if (match.getId() == null) {
+            matchService.create(match);
+        } else {
+            matchService.update(match);
+        }
 
-        return new RedirectView("/");
+        return new RedirectView("/match/all");
     }
 }

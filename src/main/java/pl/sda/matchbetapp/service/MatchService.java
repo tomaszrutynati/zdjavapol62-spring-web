@@ -77,6 +77,10 @@ public class MatchService {
                 .collect(Collectors.toList());
     }
 
+    public Match getById(Long id) {
+        return toMatch(repository.getById(id));
+    }
+
     private Match toMatch(MatchEntity ent) {
         return Match.builder()
                 .id(ent.getId())

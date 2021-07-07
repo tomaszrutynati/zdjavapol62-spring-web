@@ -9,9 +9,10 @@
     <h3>Dodaj mecz:</h3>
 
     <form method="post" th:object="${match}" th:action="@{/match}">
-        Pierwszy zespół: <input type="text" th:field="*{firstTeam}"/><br>
-        Drugi zespół: <input type="text" th:field="*{secondTeam}"/><br>
-        Rozpoczęcie: <input type="datetime-local" th:field="*{startTime}"/><br>
+        <input type="hidden" th:field="*{id}" th:value="${match.id}">
+        Pierwszy zespół: <input type="text" th:field="*{firstTeam}" th:value="${match.firstTeam}"/><br>
+        Drugi zespół: <input type="text" th:field="*{secondTeam}" th:value="${match.secondTeam}"/><br>
+        Rozpoczęcie: <input type="datetime-local" th:field="*{startTime}" th:value="${match.startTime}"/><br>
         <input type="submit" value="Zapisz"/>
     </form>
 
