@@ -36,7 +36,7 @@ public class MatchService {
         }
 
         if (LocalDateTime.now().isAfter(match.getStartTime())) {
-            throw new DateInPastException("Godzina meczu jest z przeszlosci");
+            //throw new DateInPastException("Godzina meczu jest z przeszlosci");
         }
 
         repository.save(MatchEntity.builder()

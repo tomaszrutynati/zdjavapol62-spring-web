@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bet app</title>
+
+    <style>
+        .even {
+            background-color: lightgreen;
+        }
+
+        .odd {
+            background-color: green;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .black {
+            color: black;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h3 th:if="${matches.isEmpty()}">Brak dodanych meczy. <a th:href="@{match}">Dodaj</a></h3>
+
+<table th:unless="${matches.isEmpty()}">
+    <thead>
+    <tr class="bold">
+        <td>Lp</td>
+        <td>Gospodarz</td>
+        <td>Gość</td>
+        <td>Data rozpoczęcia</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="match, iterator: ${matches}" th:class="${iterator.even ? 'even' : 'odd'}">
+        <td><span th:class="${match.isFromPast()? 'red' : 'black'}" th:text="${iterator.count}"></span></td>
+        <td><span th:class="${match.isFromPast()? 'red' : 'black'}" th:text="${match.firstTeam}"></span></td>
+        <td><span th:class="${match.isFromPast()? 'red' : 'black'}" th:text="${match.secondTeam}"></span></td>
+        <td><span th:class="${match.isFromPast()? 'red' : 'black'}" th:text="${match.startTime}"></span></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

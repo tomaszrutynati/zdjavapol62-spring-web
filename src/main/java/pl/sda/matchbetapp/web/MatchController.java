@@ -18,6 +18,13 @@ public class MatchController {
 
     private final MatchService matchService;
 
+    @GetMapping("/all")
+    public ModelAndView displayAllMatchesPage() {
+        ModelAndView modelAndView = new ModelAndView("matches");
+        modelAndView.addObject("matches", matchService.getAll());
+        return modelAndView;
+    }
+
     @GetMapping
     public ModelAndView displayAddMatchPage() {
         ModelAndView modelAndView = new ModelAndView("addMatch");
