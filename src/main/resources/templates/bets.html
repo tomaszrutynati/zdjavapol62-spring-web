@@ -3,12 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Bet app</title>
+
+    <style>
+        .draw {
+            background-color: lightgreen;
+        }
+        .win {
+            background-color: cornflowerblue;
+        }
+    </style>
 </head>
 <body>
 
-<table>
+<h3 th:if="${bets.isEmpty()}">Brak założonych zakładów</h3>
+
+<table th:unless="${bets.isEmpty()}">
     <thead>
         <tr>
+            <td>Lp</td>
             <td>Mecz</td>
             <td>Czas rozpoczęcia</td>
             <td>Użytkownik</td>
@@ -16,7 +28,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr th:each="bet: ${bets}">
+        <tr th:each="bet, iterator: ${bets}" th:class="${bet.firstTeamResult != bet.secondTeamResult ? 'win' : 'draw'}">
+            <td><span th:text="${iterator.count}"></span></td>
             <td><span th:text="${bet.firstTeam + '-' + bet.secondTeam}"></span></td>
             <td><span th:text="${bet.startTime}"></span></td>
             <td><span th:text="${bet.userLogin}"></span></td>
