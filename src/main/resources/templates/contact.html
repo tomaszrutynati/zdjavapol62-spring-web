@@ -11,5 +11,7 @@
     <h3>Email: <span th:text="${email}"></span></h3>
     <h3>Telefon: <span th:text="${phone}"></span></h3>
     <h3>Firma: <span th:text="${company}"></span></h3>
+
+    <div th:replace="fragments/utils.html :: footer"/>
 </body>
 </html>
