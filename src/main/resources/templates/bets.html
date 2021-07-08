@@ -5,31 +5,12 @@
     <title>Bet app</title>
     <link th:href="@{/css/nav.css}" rel="stylesheet"/>
     <link th:href="@{/css/table.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="/webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div th:replace="fragments/utils.html :: navigation"/>
-<h3 th:if="${bets.isEmpty()}">Brak założonych zakładów</h3>
-
-<table th:unless="${bets.isEmpty()}">
-    <thead>
-        <tr>
-            <td>Lp</td>
-            <td>Mecz</td>
-            <td>Czas rozpoczęcia</td>
-            <td>Użytkownik</td>
-            <td>Wynik</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="bet, iterator: ${bets}" th:class="${iterator.even ? 'even' : 'odd'}">
-            <td><span th:text="${iterator.count}"></span></td>
-            <td><span th:text="${bet.firstTeam + '-' + bet.secondTeam}"></span></td>
-            <td><span th:text="${bet.startTime}"></span></td>
-            <td><span th:text="${bet.userLogin}"></span></td>
-            <td><span th:text="${bet.firstTeamResult + ':' + bet.secondTeamResult}"></span></td>
-        </tr>
-    </tbody>
-</table>
+<div th:replace="fragments/betsTable.html :: table"/>
 <div th:replace="fragments/utils.html :: footer"/>
 </body>
 </html>

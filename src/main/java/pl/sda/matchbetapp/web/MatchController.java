@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import pl.sda.matchbetapp.api.model.Match;
+import pl.sda.matchbetapp.service.BetService;
 import pl.sda.matchbetapp.service.MatchService;
 
 @Controller
@@ -14,6 +15,7 @@ import pl.sda.matchbetapp.service.MatchService;
 public class MatchController {
 
     private final MatchService matchService;
+    private final BetService betService;
 
     @GetMapping("/all")
     public ModelAndView displayAllMatchesPage() {
@@ -33,6 +35,14 @@ public class MatchController {
     public RedirectView deleteMatch(@RequestParam Long id) {
         matchService.delete(id);
         return new RedirectView("/match/all");
+    }
+
+    @GetMapping("/details")
+    public ModelAndView displayDetailsPage(@RequestParam Long id) {
+        ModelAndView mav = new ModelAndView("matchDetails");
+        mav.addObject("match", matchService.getById(id));
+        mav.addObject("bets", betService.getAllForMatch(id));
+        return mav;
     }
 
     @GetMapping

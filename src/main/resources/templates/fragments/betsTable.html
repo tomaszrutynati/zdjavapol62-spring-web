@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bet app</title>
+</head>
+<body>
+    <div th:fragment="table">
+        <h3 th:if="${bets.isEmpty()}">Brak założonych zakładów</h3>
+
+        <table th:unless="${bets.isEmpty()}">
+            <thead>
+            <tr>
+                <td>Lp</td>
+                <td>Mecz</td>
+                <td>Czas rozpoczęcia</td>
+                <td>Użytkownik</td>
+                <td>Wynik</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="bet, iterator: ${bets}" th:class="${iterator.even ? 'even' : 'odd'}">
+                <td><span th:text="${iterator.count}"></span></td>
+                <td><span th:text="${bet.firstTeam + '-' + bet.secondTeam}"></span></td>
+                <td><span th:text="${bet.startTime}"></span></td>
+                <td><span th:text="${bet.userLogin}"></span></td>
+                <td><span th:text="${bet.firstTeamResult + ':' + bet.secondTeamResult}"></span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

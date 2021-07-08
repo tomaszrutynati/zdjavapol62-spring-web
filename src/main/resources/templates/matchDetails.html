@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bet app</title>
+    <link th:href="@{/css/nav.css}" rel="stylesheet"/>
+    <link th:href="@{/css/table.css}" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="/webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div th:replace="fragments/utils.html :: navigation"/>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+               <div class="container" style="text-align: center">
+                   <div class="row">
+                       <div class="col-6">
+                           Gospodarz
+                       </div>
+                       <div class="col-6">
+                           Gość
+                       </div>
+                   </div>
+                   <div class="row">
+                       <div class="col-6">
+                           <span th:text="${match.firstTeam}"></span>
+                       </div>
+                       <div class="col-6">
+                           <span th:text="${match.secondTeam}"></span>
+                       </div>
+                   </div>
+                   <br>
+                   <div class="row">
+                       <div class="col-5">
+                           Czas rozpoczęcia:
+                       </div>
+                       <div class="col-7">
+                           <span th:text="${match.startTime}"></span>
+                       </div>
+                   </div>
+               </div>
+            </div>
+            <div class="col-6">
+                <div th:replace="fragments/betsTable.html :: table"/>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+    <div th:replace="fragments/utils.html :: footer"/>
+</body>
+</html>

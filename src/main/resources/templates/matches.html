@@ -5,6 +5,8 @@
     <title>Bet app</title>
     <link th:href="@{/css/nav.css}" rel="stylesheet"/>
     <link th:href="@{/css/table.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="/webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
         .red {
             color: red;
@@ -37,7 +39,8 @@
         <td><span th:class="${match.isFromPast()? 'red' : 'black'}" th:text="${match.startTime}"></span></td>
         <td>
             <a th:class="${match.isFromPast()? 'red' : 'black'}" th:href="@{'edit?id=' + ${match.id}}">Edytuj</a>&nbsp;
-            <a th:class="${match.isFromPast()? 'red' : 'black'}" th:href="@{'delete?id=' + ${match.id}}">Delete</a>
+            <a th:class="${match.isFromPast()? 'red' : 'black'}" th:href="@{'delete?id=' + ${match.id}}">Delete</a>&nbsp;
+            <a th:class="${match.isFromPast()? 'red' : 'black'}" th:href="@{'details?id=' + ${match.id}}">Detale</a>
         </td>
     </tr>
     </tbody>
