@@ -7,3 +7,19 @@ td {
     margin: 0;
     padding: 0;
 }
+
+thead td {
+    font-weight: bold;
+}
+
+td {
+    color: darkslategrey;
+}
+
+.even {
+    background-color: deepskyblue;
+}
+
+.odd {
+    background-color: dodgerblue;
+}

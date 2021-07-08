@@ -5,14 +5,6 @@
     <title>Bet app</title>
     <link th:href="@{/css/nav.css}" rel="stylesheet"/>
     <link th:href="@{/css/table.css}" rel="stylesheet"/>
-    <style>
-        .draw {
-            background-color: lightgreen;
-        }
-        .win {
-            background-color: cornflowerblue;
-        }
-    </style>
 </head>
 <body>
 <div th:replace="fragments/utils.html :: navigation"/>
@@ -29,7 +21,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr th:each="bet, iterator: ${bets}" th:class="${bet.firstTeamResult != bet.secondTeamResult ? 'win' : 'draw'}">
+        <tr th:each="bet, iterator: ${bets}" th:class="${iterator.even ? 'even' : 'odd'}">
             <td><span th:text="${iterator.count}"></span></td>
             <td><span th:text="${bet.firstTeam + '-' + bet.secondTeam}"></span></td>
             <td><span th:text="${bet.startTime}"></span></td>

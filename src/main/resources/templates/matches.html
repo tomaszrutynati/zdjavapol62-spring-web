@@ -6,14 +6,6 @@
     <link th:href="@{/css/nav.css}" rel="stylesheet"/>
     <link th:href="@{/css/table.css}" rel="stylesheet"/>
     <style>
-        .even {
-            background-color: lightgreen;
-        }
-
-        .odd {
-            background-color: green;
-        }
-
         .red {
             color: red;
         }
@@ -21,19 +13,15 @@
         .black {
             color: black;
         }
-
-        .bold {
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
 <div th:replace="fragments/utils.html :: navigation"/>
-<h3 th:if="${matches.isEmpty()}">Brak dodanych meczy. <a th:href="@{match}">Dodaj</a></h3>
+<h3 th:if="${matches.isEmpty()}">Brak dodanych meczy. <a th:href="@{/match}">Dodaj</a></h3>
 
 <table th:unless="${matches.isEmpty()}">
     <thead>
-    <tr class="bold">
+    <tr>
         <td>Lp</td>
         <td>Gospodarz</td>
         <td>Gość</td>
