@@ -25,13 +25,13 @@ public class Match {
     @TeamName
     @NotBlank(message = "Nazwa zespolu goscia nie moze byc pusta")
     private String secondTeam;
-    //@Future(message = "Data rozegrania meczu nie moze byc z przeszloscia")
+    @Future(message = "Data rozegrania meczu nie moze byc z przeszloscia")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime startTime;
 
     @AssertTrue(message = "Mecze mogą się odbywać tylko popoludniu")
     public boolean isStartTimeAfternoon() {
-        return startTime.getHour() >= 12;
+        return startTime == null || startTime.getHour() >= 12;
     }
 
     //used in thymleaf tempalte

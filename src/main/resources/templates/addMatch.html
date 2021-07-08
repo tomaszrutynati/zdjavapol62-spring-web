@@ -16,19 +16,34 @@
             <div class="col-6">
                 <form method="post" th:object="${match}" th:action="@{/match}">
                     <input type="hidden" th:field="*{id}" th:value="${match.id}">
+                    <div th:if="${#fields.hasGlobalErrors()}" id="globalErrors" class="form-text text-danger">
+                        <span th:text="${#fields.globalErrors()}"></span>
+                    </div>
+                    <div th:if="${#fields.hasErrors('startTimeAfternoon')}" id="startTimeAfternoonInputError" class="form-text text-danger">
+                        <span th:text="${#fields.errors('startTimeAfternoon')}"></span>
+                    </div>
                     <div class="mb-3">
                         <label for="firstTeamInput" class="form-label">Gospodarz:</label>
                         <input type="text" th:field="*{firstTeam}" th:value="${match.firstTeam}" class="form-control" id="firstTeamInput">
+                        <div th:if="${#fields.hasErrors('firstTeam')}" id="firstTeamInputError" class="form-text text-danger">
+                            <span th:text="${#fields.errors('firstTeam')}"></span>
+                        </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="secondTeamInput" class="form-label">Gość:</label>
                         <input type="text" th:field="*{secondTeam}" th:value="${match.secondTeam}" class="form-control" id="secondTeamInput">
+                        <div th:if="${#fields.hasErrors('secondTeam')}" id="secondTeamInputError" class="form-text text-danger">
+                            <span th:text="${#fields.errors('secondTeam')}"></span>
+                        </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="startTimeInput" class="form-label">Data rozpoczęcia:</label>
                         <input type="datetime-local" th:field="*{startTime}" th:value="${match.startTime}" class="form-control" id="startTimeInput">
+                        <div th:if="${#fields.hasErrors('startTime')}" id="startTimeInputError" class="form-text text-danger">
+                            <span th:text="${#fields.errors('startTime')}"></span>
+                        </div>
                     </div>
 
                     <input type="submit" value="Zapisz" class="btn btn-primary"/>
