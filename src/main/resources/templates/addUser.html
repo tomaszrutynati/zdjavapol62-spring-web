@@ -9,9 +9,11 @@
     <h3>Dodaj użytkownika:</h3>
 
     <form method="post" th:object="${user}" th:action="@{/user}">
-        Imię: <input type="text" th:field="*{firstName}"/><br>
-        Nazwisko: <input type="text" th:field="*{lastName}"/><br>
-        Login: <input type="email" th:field="*{login}"/><br>
+        <input type="hidden" th:field="*{id}" th:value="${user.id}"/>
+        Imię: <input type="text" th:field="*{firstName}" th:value="${user.firstName}"/><br>
+        Nazwisko: <input type="text" th:field="*{lastName}" th:value="${user.lastName}"/><br>
+        Login: <input type="email" th:field="*{login}"
+                      th:value="${user.login}" th:readonly="${isEdited}"/><br>
         <input type="submit" value="Zapisz"/>
     </form>
 

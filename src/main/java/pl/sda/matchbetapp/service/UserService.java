@@ -50,6 +50,10 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
+    public User getById(Long id) {
+        return toUser(userRepository.getById(id));
+    }
+
     private User toUser(UserEntity ent) {
         return User.builder()
                 .id(ent.getId())
