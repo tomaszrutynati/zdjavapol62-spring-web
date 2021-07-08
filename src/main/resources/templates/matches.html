@@ -46,7 +46,10 @@
         <td><span th:class="${match.isFromPast()? 'red' : 'black'}" th:text="${match.firstTeam}"></span></td>
         <td><span th:class="${match.isFromPast()? 'red' : 'black'}" th:text="${match.secondTeam}"></span></td>
         <td><span th:class="${match.isFromPast()? 'red' : 'black'}" th:text="${match.startTime}"></span></td>
-        <td><a th:class="${match.isFromPast()? 'red' : 'black'}" th:href="@{'edit?id=' + ${match.id}}">Edytuj</a></td>
+        <td>
+            <a th:class="${match.isFromPast()? 'red' : 'black'}" th:href="@{'edit?id=' + ${match.id}}">Edytuj</a>&nbsp;
+            <a th:class="${match.isFromPast()? 'red' : 'black'}" th:href="@{'delete?id=' + ${match.id}}">Delete</a>
+        </td>
     </tr>
     </tbody>
 </table>

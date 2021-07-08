@@ -29,6 +29,12 @@ public class MatchController {
         return modelAndView;
     }
 
+    @GetMapping("/delete")
+    public RedirectView deleteMatch(@RequestParam Long id) {
+        matchService.delete(id);
+        return new RedirectView("/match/all");
+    }
+
     @GetMapping
     public ModelAndView displayAddMatchPage() {
         ModelAndView modelAndView = new ModelAndView("addMatch");
