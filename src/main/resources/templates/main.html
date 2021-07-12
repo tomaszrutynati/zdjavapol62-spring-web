@@ -12,6 +12,13 @@
     <h3>Aplikacja do obstawiania meczy</h3>
     <h3>Dziś jest <span th:text="${currentDate}"></span></h3>
 
+    <h4 th:if="${isLogged}">
+        Jesteś zalogowany jako: <span th:text="${loggedUser}"/>
+    </h4>
+    <h4 th:unless="${isLogged}">
+        <a th:href="@{/login}">Zaloguj się</a>
+    </h4>
+
     <div th:replace="fragments/utils.html :: navigation"/>
     <div th:replace="fragments/utils.html :: footer"/>
 </body>

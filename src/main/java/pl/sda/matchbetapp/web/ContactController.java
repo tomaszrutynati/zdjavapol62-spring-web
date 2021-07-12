@@ -1,6 +1,7 @@
 package pl.sda.matchbetapp.web;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -8,6 +9,7 @@ import pl.sda.matchbetapp.config.AdminProperties;
 
 @Controller
 @RequiredArgsConstructor
+@PreAuthorize("isAuthenticated()")
 public class ContactController {
     private final AdminProperties adminProperties;
 
