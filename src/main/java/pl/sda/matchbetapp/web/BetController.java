@@ -2,6 +2,7 @@ package pl.sda.matchbetapp.web;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,7 +13,6 @@ import org.springframework.web.servlet.view.RedirectView;
 import pl.sda.matchbetapp.api.model.NewBet;
 import pl.sda.matchbetapp.service.BetService;
 import pl.sda.matchbetapp.service.MatchService;
-import pl.sda.matchbetapp.service.UserService;
 import pl.sda.matchbetapp.web.model.SelectOption;
 
 import java.util.stream.Collectors;
@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 public class BetController {
 
     private final MatchService matchService;
-    private final UserService userService;
     private final BetService betService;
 
     @GetMapping("/all")
@@ -38,12 +37,6 @@ public class BetController {
     public ModelAndView displayBetPage() {
         ModelAndView mav = new ModelAndView("addBet");
         mav.addObject("bet", new NewBet());
-        mav.addObject("users", userService.getAll()
-                .stream()
-                .map(usr -> SelectOption.builder()
-                        .id(usr.getId())
-                        .label(usr.getLogin()).build())
-                .collect(Collectors.toList()));
         mav.addObject("matches", matchService.getAll()
                 .stream()
                 .map(match -> SelectOption.builder()

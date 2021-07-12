@@ -1,9 +1,12 @@
 package pl.sda.matchbetapp.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import pl.sda.matchbetapp.api.model.BetDetails;
 import pl.sda.matchbetapp.api.model.NewBet;
+import pl.sda.matchbetapp.api.model.User;
 import pl.sda.matchbetapp.exception.MatchNotFoundException;
 import pl.sda.matchbetapp.repository.BetEntity;
 import pl.sda.matchbetapp.repository.BetRepository;
@@ -13,15 +16,22 @@ import pl.sda.matchbetapp.repository.UserEntity;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Service
 @RequiredArgsConstructor
 public class BetService {
 
     private final BetRepository betRepository;
     private final MatchService matchService;
+    private final UserService userService;
 
     public void createBet(NewBet bet) {
         validateBet(bet);
+
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+        User loggedUser = userService.findByLogin(userDetails.getUsername())
+                .orElseThrow(() -> new IllegalStateException("User not exists"));
 
         BetEntity entity = BetEntity.builder()
                 .firstTeamResult(bet.getFirstTeamResult())
@@ -29,7 +39,7 @@ public class BetService {
                 //Jeden z sposobów budowania relacji między encjami - inny to wyciągnięcie encji
                 //za pomocą repository, czyli matchRepository.findById(bet.getMatchId())
                 .match(MatchEntity.builder().id(bet.getMatchId()).build())
-                .user(UserEntity.builder().id(bet.getUserId()).build())
+                .user(UserEntity.builder().id(loggedUser.getId()).build())
                 .build();
 
         betRepository.save(entity);

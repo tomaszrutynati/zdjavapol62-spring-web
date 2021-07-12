@@ -9,6 +9,7 @@ import pl.sda.matchbetapp.repository.UserEntity;
 import pl.sda.matchbetapp.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,6 +18,10 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
+    public Optional<User> findByLogin(String login) {
+        return userRepository.findByLogin(login).map(this::toUser);
+    }
 
     public List<User> searchByParams(UserSearchParams userSearchParams) {
         return userRepository.searchByParams(userSearchParams)

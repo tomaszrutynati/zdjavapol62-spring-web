@@ -14,8 +14,6 @@ public class NewBet {
     private Long id;
     @NotNull(message = "Nie podano meczu")
     private Long matchId;
-    @NotNull(message = "Nie podano uzytkownika")
-    private Long userId;
     private Integer firstTeamResult;
     private Integer secondTeamResult;
 
