@@ -21,7 +21,8 @@ public class UserEntity {
     private String login;
     private String firstName;
     private String lastName;
-
+    private String password;
+    private String role;
     @OneToMany(mappedBy = "user")
     private Set<BetEntity> bets;
 }

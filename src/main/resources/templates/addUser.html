@@ -17,6 +17,12 @@
         Nazwisko: <input type="text" th:field="*{lastName}" th:value="${user.lastName}"/><br>
         Login: <input type="email" th:field="*{login}"
                       th:value="${user.login}" th:readonly="${isEdited}"/><br>
+        Hasło: <input type="password" th:field="*{password}"
+                      th:value="${user.password}" th:readonly="${isEdited}"/><br>
+        Role: <select th:field="*{role}" th:value="${user.role}" th:readonly="${isEdited}">
+                <option value="ADMIN">Admin</option>
+                <option value="USER">User</option>
+            </select><br>
         <input type="submit" value="Zapisz"/>
     </form>
 

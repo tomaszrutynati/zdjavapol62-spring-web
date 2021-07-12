@@ -1,6 +1,7 @@
 package pl.sda.matchbetapp.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sda.matchbetapp.api.model.User;
 import pl.sda.matchbetapp.api.model.UserSearchParams;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public List<User> searchByParams(UserSearchParams userSearchParams) {
         return userRepository.searchByParams(userSearchParams)
@@ -28,6 +30,8 @@ public class UserService {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .login(user.getLogin())
+                .password(passwordEncoder.encode(user.getPassword()))
+                .role(user.getRole())
                 .build());
     }
 
@@ -37,6 +41,8 @@ public class UserService {
                 .lastName(user.getLastName())
                 .login(user.getLogin())
                 .id(user.getId())
+                .password(user.getPassword())
+                .role(user.getRole())
                 .build());
     }
 
@@ -60,6 +66,8 @@ public class UserService {
                 .firstName(ent.getFirstName())
                 .lastName(ent.getLastName())
                 .login(ent.getLogin())
+                .role(ent.getRole())
+                .password(ent.getPassword())
                 .build();
     }
 }
