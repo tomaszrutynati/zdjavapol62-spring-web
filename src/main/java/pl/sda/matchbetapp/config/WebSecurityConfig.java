@@ -35,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/authenticate")
                     .defaultSuccessUrl("/")
                 .and().logout()
+                .and().headers().frameOptions().disable()
                 .and().csrf().disable();
     }
 }
