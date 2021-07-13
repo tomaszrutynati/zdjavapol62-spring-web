@@ -13,7 +13,7 @@
     <h3>Dziś jest <span th:text="${currentDate}"></span></h3>
 
     <h4 sec:authorize="isAuthenticated()">
-        Jesteś zalogowany jako: <span th:text="${loggedUser}"/>
+        Jesteś zalogowany jako: <span sec:authentication="name"/>
     </h4>
     <h4 sec:authorize="isAnonymous()">
         <a th:href="@{/login}">Zaloguj się</a>
