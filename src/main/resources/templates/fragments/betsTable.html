@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Bet app</title>
@@ -15,7 +15,7 @@
                 <td>Mecz</td>
                 <td>Czas rozpoczęcia</td>
                 <td>Użytkownik</td>
-                <td>Wynik</td>
+                <td sec:authorize="hasRole('ADMIN')">Wynik</td>
             </tr>
             </thead>
             <tbody>
@@ -24,7 +24,7 @@
                 <td><span th:text="${bet.firstTeam + '-' + bet.secondTeam}"></span></td>
                 <td><span th:text="${bet.startTime}"></span></td>
                 <td><span th:text="${bet.userLogin}"></span></td>
-                <td><span th:text="${bet.firstTeamResult + ':' + bet.secondTeamResult}"></span></td>
+                <td sec:authorize="hasRole('ADMIN')"><span th:text="${bet.firstTeamResult + ':' + bet.secondTeamResult}"></span></td>
             </tr>
             </tbody>
         </table>
