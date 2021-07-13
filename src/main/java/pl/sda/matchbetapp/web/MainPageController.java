@@ -14,7 +14,6 @@ public class MainPageController {
     public String displayMainPage(ModelMap modelMap, Authentication authentication) {
         modelMap.addAttribute("currentDate", LocalDate.now());
         boolean authenticated = authentication != null && authentication.isAuthenticated();
-        modelMap.addAttribute("isLogged", authenticated);
         if (authenticated) {
             modelMap.addAttribute("loggedUser", authentication.getName());
         }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Bet app</title>
@@ -12,10 +12,10 @@
     <h3>Aplikacja do obstawiania meczy</h3>
     <h3>Dziś jest <span th:text="${currentDate}"></span></h3>
 
-    <h4 th:if="${isLogged}">
+    <h4 sec:authorize="isAuthenticated()">
         Jesteś zalogowany jako: <span th:text="${loggedUser}"/>
     </h4>
-    <h4 th:unless="${isLogged}">
+    <h4 sec:authorize="isAnonymous()">
         <a th:href="@{/login}">Zaloguj się</a>
     </h4>
 

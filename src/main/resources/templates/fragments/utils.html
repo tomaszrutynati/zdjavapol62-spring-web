@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Bet app</title>
@@ -12,11 +12,11 @@
             <li><a th:href="@{/match/all}">Mecze</a></li>
             <li><a th:href="@{/match}">Dodaj mecz</a></li>
             <li><a th:href="@{/user}">Dodaj użytkownika</a></li>
-            <li><a th:href="@{/bet}">Dodaj zakład</a></li>
+            <li sec:authorize="hasRole('USER')"><a th:href="@{/bet}">Dodaj zakład</a></li>
             <li><a th:href="@{/bet/all}">Wszystkie zakłady</a></li>
             <li><a th:href="@{/contact}">Kontakt</a></li>
-            <li><a th:href="@{/login}">Zaloguj się</a></li>
-            <li>
+            <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Zaloguj się</a></li>
+            <li sec:authorize="isAuthenticated()">
                 <form id="logout" method="post" th:action="@{/logout}">
                     <a href="#" onclick="document.getElementById('logout').submit()">Wyloguj się</a>
                 </form>

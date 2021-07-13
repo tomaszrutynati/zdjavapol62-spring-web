@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Bet app</title>
@@ -38,9 +38,9 @@
         <td><span th:class="${match.isFromPast()? 'red' : 'black'}" th:text="${match.secondTeam}"></span></td>
         <td><span th:class="${match.isFromPast()? 'red' : 'black'}" th:text="${match.startTime}"></span></td>
         <td>
-            <a th:class="${match.isFromPast()? 'red' : 'black'}" th:href="@{'edit?id=' + ${match.id}}">Edytuj</a>&nbsp;
-            <a th:class="${match.isFromPast()? 'red' : 'black'}" th:href="@{'delete?id=' + ${match.id}}">Delete</a>&nbsp;
-            <a th:class="${match.isFromPast()? 'red' : 'black'}" th:href="@{'details?id=' + ${match.id}}">Detale</a>
+            <a sec:authorize="hasRole('ADMIN')" th:class="${match.isFromPast()? 'red' : 'black'}" th:href="@{'edit?id=' + ${match.id}}">Edytuj</a>&nbsp;
+            <a sec:authorize="hasRole('ADMIN')" th:class="${match.isFromPast()? 'red' : 'black'}" th:href="@{'delete?id=' + ${match.id}}">Delete</a>&nbsp;
+            <a sec:authorize="isAuthenticated()" th:class="${match.isFromPast()? 'red' : 'black'}" th:href="@{'details?id=' + ${match.id}}">Detale</a>
         </td>
     </tr>
     </tbody>
